@@ -1,0 +1,24 @@
+Bene Studio React JS Engineering Task
+
+- where to deploy? buy domain? https? github pages, maybe?
+
+- which font? Arial? sans-serif? Roboto? google-fonts? download or link?
+- what colors to use? can't reproduce the colors with the color picker
+- how to structure the css? does it matter? child-selectors or more classNames ?
+- use CSS-grid?
+- replace favicon.ico with something
+
+- where to put the state? maybe wrap the MultiInput in some
+   
+      <StateProviderSomething>
+            <MultiInput {...allThePropsNeeded} />
+      </StateProviderSomething>                             ???
+
+- where to put the functions to update the state?
+
+      <StateAndUpdaterProviderWhatever>
+            <MultiInput {...allThePropsAndFunctionsNeeded} />
+      </StateAndUpdaterProviderWhatever>                             ???
+
+- should the last element be a unique component or just a parameterized regular one?
+- use animation? transitions?
