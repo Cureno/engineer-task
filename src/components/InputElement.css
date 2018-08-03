@@ -1,0 +1,50 @@
+.Input-element {
+  animation: grow 0.7s ease-in-out forwards;
+  /* margin: 10px; */
+  margin-left: 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.Input-element > label{
+  font-size: 0.85em;
+  color: grey;
+}
+
+.Input-element:focus-within > label{
+  color: var(--highlight-color);
+}
+
+.Input-element > input[type=text] {
+  font-size: 1.0em; /* google chrome needs this*/
+  height: 1.5em;
+  border:none;
+  border-bottom: 1px solid lightgrey;
+  width: 450px;
+}
+
+.Input-element > input[type=text]:focus {
+  outline: none; /* google chrome needs this*/
+  border-bottom: 2px solid var(--highlight-color);
+}
+
+.Input-element button {
+  color: darkgrey;
+  font-size: 2em;
+  font-weight: 100;
+  text-transform: uppercase;
+  background-color: white;
+  border: none;
+  width: 50px;
+}
+
+@keyframes grow {
+  from {
+    height: 80px;
+    opacity: 0;
+  }
+  to {
+    height: 80px;
+    opacity: 1;
+  }
+}

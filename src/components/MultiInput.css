@@ -1,0 +1,9 @@
+.Multi-input {
+  border: 1px solid grey;
+  transition: height 2s;
+  width: 600px;
+}
+
+/* .Multi-input:hover {
+  background: yellow;
+} */
