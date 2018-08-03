@@ -1,9 +1,9 @@
 .Input-element {
-  animation: grow 0.7s ease-in-out forwards;
-  /* margin: 10px; */
+  animation: grow 0.4s ease-in-out forwards;
   margin-left: 10px;
   margin-top: 20px;
   box-sizing: border-box;
+  height: 80px;
 }
 
 .Input-element > label{
@@ -40,11 +40,9 @@
 
 @keyframes grow {
   from {
-    height: 80px;
     opacity: 0;
   }
   to {
-    height: 80px;
     opacity: 1;
   }
 }
