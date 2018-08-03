@@ -3,60 +3,30 @@ import React, { Component } from 'react';
 import InputElement from './InputElement';
 import MultiInputHeader from './MultiInputHeader';
 import Buttons from './Buttons';
+import PropTypes from 'prop-types';
 
 class MultiInput extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: [
-        "first",
-        "second",
-        "third",
-        ""
-      ]
-    }
-  }
-
-  updateText = (idx, e) => {
-    const items = this.state.items.map((originalText, itemIdx) =>
-      idx === itemIdx ?
-        e.target.value :
-        originalText
-    )
-    this.setState({ items })
-  }
-
-  addItem = (idx, e) => {
-    const items = this.state.items.map((originalText, itemIdx) => {
-      return idx === itemIdx ?
-        e.target.value :
-        originalText
-    }).concat("")
-
-    this.setState({ items })
-  }
-
-  deleteIem = (idx, e) => {
-    this.setState({ items: this.state.items.filter((_, itemIdx) => idx !== itemIdx) })
-  }
 
   render() {
-    const lastIdx = this.state.items.length - 1;
 
-    const items = this.state.items.map((text, idx) => idx < lastIdx ?
+    const { items, updateText, addItem, deleteItem } = this.props
+
+    const lastIdx = items.length - 1;
+
+    const renderedItems = items.map((text, idx) => idx < lastIdx ?
       (
         <InputElement
-          onChange={this.updateText.bind(this, idx)}
+          onChange={e => updateText(idx, e)}
           label={"test attribute"}
           placeholder={"test attribute"}
           text={text}
           deletable={true}
-          deleteItem={this.deleteIem.bind(this, idx)}
+          deleteItem={_ => deleteItem(idx)}
           key={idx} />
       ) :
       (
         <InputElement
-          onChange={this.addItem.bind(this, idx)}
+          onChange={e => addItem(idx, e)}
           placeholder={"test attribute"}
           text={text}
           deletable={false}
@@ -67,12 +37,19 @@ class MultiInput extends Component {
     return (
       <div className="Multi-input" >
         <MultiInputHeader name="Test" />
-        {items}
+        {renderedItems}
         <Buttons />
       </div >
     )
   }
 
+}
+
+MultiInput.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateText: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+  deleteIem: PropTypes.func,
 }
 
 export default MultiInput;
