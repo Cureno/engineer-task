@@ -11,7 +11,7 @@ class InputElement extends Component {
       <div className="Input-element">
         <label htmlFor="">{label}</label><br />
         <input onChange={onChange} value={text} placeholder={placeholder} type="text" />
-        {deletable ? <button onClick={deleteItem}>&times;</button> : null}
+        {deletable ? <button onClick={deleteItem}>&times;</button> : <button style={{ visibility: "hidden" }}>&times;</button>}
       </div>
     )
   }
