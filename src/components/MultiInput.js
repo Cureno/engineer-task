@@ -9,90 +9,60 @@ class MultiInput extends Component {
     super(props)
     this.state = {
       items: [
-        {
-          label: "test attribute",
-          text: "first"
-        },
-        {
-          label: "test attribute",
-          text: "second"
-        },
-        {
-          label: "test attribute",
-          text: "third"
-        },
-        {
-          label: "",
-          text: ""
-        },
+        "first",
+        "second",
+        "third",
+        ""
       ]
-    };
+    }
   }
 
-
   updateText = (idx, e) => {
-    e.preventDefault();
-    const newText = e.target.value;
-    const newItems = { ...this.state.items }
-    const newState = { ...this.state, items: newItems }
-    newState[idx].text = newText;
-    this.setState(newState)
-
-
-    // this.setState(prevState => {
-    //   return { items: prevState.items[idx]}
-    // })
+    const items = this.state.items.map((originalText, itemIdx) =>
+      idx === itemIdx ?
+        e.target.value :
+        originalText
+    )
+    this.setState({ items })
   }
 
   addItem = (idx, e) => {
-    e.preventDefault()
-    const newItem = { label: "test attribute", text: "" };
-    this.setState(prevState => {
-      return { items: prevState.items.concat(newItem) }
-    })
+    const items = this.state.items.map((originalText, itemIdx) => {
+      return idx === itemIdx ?
+        e.target.value :
+        originalText
+    }).concat("")
+
+    this.setState({ items })
   }
 
   deleteIem = (idx, e) => {
-    e.preventDefault()
-    this.setState(prevState => {
-      return (
-        { items: prevState.items.filter((_, itemIdx) => itemIdx !== idx) }
-      )
-    })
+    this.setState({ items: this.state.items.filter((_, itemIdx) => idx !== itemIdx) })
   }
 
   render() {
     const lastIdx = this.state.items.length - 1;
 
-    const items = this.state.items.map((elem, idx) => {
-
-      return idx < lastIdx ?
-        (
-          <InputElement
-            onChange={
-              this.updateText.bind(this, idx)
-            }
-            label={elem.label}
-            placeholder={elem.label}
-            text={elem.text}
-            deletable={true}
-            deleteItem={this.deleteIem.bind(this, idx)}
-            key={idx} />
-        ) :
-        (
-          <InputElement
-            onChange={e => {
-              this.addItem(idx, e)
-              this.updateText(idx, e)
-            }
-            }
-            placeholder={"test attribute"}
-            text={elem.text}
-            deletable={false}
-            key={idx} />
-        )
-
-    })
+    const items = this.state.items.map((text, idx) => idx < lastIdx ?
+      (
+        <InputElement
+          onChange={this.updateText.bind(this, idx)}
+          label={"test attribute"}
+          placeholder={"test attribute"}
+          text={text}
+          deletable={true}
+          deleteItem={this.deleteIem.bind(this, idx)}
+          key={idx} />
+      ) :
+      (
+        <InputElement
+          onChange={this.addItem.bind(this, idx)}
+          placeholder={"test attribute"}
+          text={text}
+          deletable={false}
+          key={idx} />
+      )
+    )
 
     return (
       <div className="Multi-input" >
