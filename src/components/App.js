@@ -14,6 +14,9 @@ class App extends Component {
         <p>
           To look at the code, visit <a href="http://www.github.com/Cureno">github.com/Cureno</a>
         </p>
+        <br/>
+        <br/>
+        <br/>
         <StateProvider/>
       </div>
     );
