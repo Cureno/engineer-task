@@ -41,9 +41,14 @@ class StateProvider extends Component {
     this.setState({ items: this.state.items.filter((_, itemIdx) => idx !== itemIdx) })
   }
 
+  onChange = items => {
+    console.log('Called with: ', items)
+  }
+
   render() {
     return (
       <MultiInput
+        onChange={this.onChange}
         items={this.state.items}
         updateText={this.updateText.bind(this)}
         addItem={this.addItem.bind(this)}

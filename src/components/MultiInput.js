@@ -41,7 +41,7 @@ class MultiInput extends Component {
             key={items.length} />
         </ul>
 
-        <Buttons />
+        <Buttons onClick={e => this.props.onChange(items)}/>
       </div >
     )
   }
@@ -49,6 +49,7 @@ class MultiInput extends Component {
 }
 
 MultiInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateText: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ class Buttons extends Component {
     return (
       <div className="Buttons">
         <button className="Buttons-cancel-button">Cancel</button>
-        <button className="Buttons-save-button">Save</button>
+        <button onClick={this.props.onClick} className="Buttons-save-button">Save</button>
       </div >
     );
   }
