@@ -5,20 +5,30 @@ import './InputElement.css';
 
 class InputElement extends Component {
   render() {
-    const { deletable, deleteItem, label, placeholder, text, onChange } = this.props;
+    const { autoFocus, deletable, deleteItem, label, placeholder, text, onChange } = this.props;
 
     return (
-      <div className="Input-element">
-        <label htmlFor="">{label}</label><br />
-        <input onChange={onChange} value={text} placeholder={placeholder} type="text" />
-        {deletable ? <button onClick={deleteItem}>&times;</button> : <button style={{ visibility: "hidden" }}>&times;</button>}
-      </div>
+      <li className="Input-element">
+        <p>
+          <label htmlFor="">{label}</label><br />
+          <input
+            autoFocus={autoFocus}
+            onChange={onChange}
+            value={text}
+            placeholder={placeholder}
+            type="text" />
+        </p>
+        {deletable ?
+          <button onClick={deleteItem}>&times;</button> :
+          <button style={{ visibility: "hidden" }}>&times;</button>}
+      </li>
     )
   }
 }
 
 
 InputElement.propTypes = {
+  autoFocus: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   deletable: PropTypes.bool.isRequired,
   deleteItem: PropTypes.func,

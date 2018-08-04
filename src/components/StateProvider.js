@@ -10,7 +10,6 @@ class StateProvider extends Component {
         "first",
         "second",
         "third",
-        ""
       ]
     }
   }
@@ -25,11 +24,15 @@ class StateProvider extends Component {
   }
 
   addItem = (idx, e) => {
-    const items = this.state.items.map((originalText, itemIdx) => {
-      return idx === itemIdx ?
-        e.target.value :
-        originalText
-    }).concat("")
+    const items = this.state.items
+      .concat("")
+      .map((originalText, itemIdx) => {
+        return idx === itemIdx ?
+          e.target.value :
+          originalText
+      })
+
+
 
     this.setState({ items })
   }
@@ -40,15 +43,12 @@ class StateProvider extends Component {
 
   render() {
     return (
-      <div>
-        <MultiInput
-          items={this.state.items}
-          updateText={this.updateText.bind(this)}
-          addItem={this.addItem.bind(this)}
-          deleteItem={this.deleteItem.bind(this)}
-        />
-      </div>
-    );
+      <MultiInput
+        items={this.state.items}
+        updateText={this.updateText.bind(this)}
+        addItem={this.addItem.bind(this)}
+        deleteItem={this.deleteItem.bind(this)} />
+    )
   }
 }
 

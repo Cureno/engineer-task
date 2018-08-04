@@ -1,7 +1,7 @@
 import './MultiInput.css';
 import React, { Component } from 'react';
 import InputElement from './InputElement';
-import MultiInputHeader from './MultiInputHeader';
+import OtherComponent from './OtherComponent';
 import Buttons from './Buttons';
 import PropTypes from 'prop-types';
 
@@ -11,33 +11,36 @@ class MultiInput extends Component {
 
     const { items, updateText, addItem, deleteItem } = this.props
 
-    const lastIdx = items.length - 1;
+    const renderedItems = items.map((text, idx) => {
 
-    const renderedItems = items.map((text, idx) => idx < lastIdx ?
-      (
-        <InputElement
-          onChange={e => updateText(idx, e)}
-          label={"test attribute"}
-          placeholder={"test attribute"}
-          text={text}
-          deletable={true}
-          deleteItem={_ => deleteItem(idx)}
-          key={idx} />
-      ) :
-      (
-        <InputElement
-          onChange={e => addItem(idx, e)}
-          placeholder={"test attribute"}
-          text={text}
-          deletable={false}
-          key={idx} />
-      )
-    )
+      const properties = {
+        onChange: e => updateText(idx, e),
+        label: "test attribute",
+        placeholder: "test attribute",
+        text,
+        deletable: true,
+        deleteItem: _ => deleteItem(idx),
+        key: idx
+      }
+
+      return idx < items.length - 1 ?
+        <InputElement {...properties} /> :
+        <InputElement {...properties} autoFocus={true} />
+    })
 
     return (
       <div className="Multi-input" >
-        <MultiInputHeader name="Test" />
-        {renderedItems}
+        <OtherComponent>Test</OtherComponent>
+        <ul>
+          {renderedItems}
+          <InputElement
+            onChange={e => addItem(items.length, e)}
+            placeholder={"test attribute"}
+            text={""}
+            deletable={false}
+            key={items.length} />
+        </ul>
+
         <Buttons />
       </div >
     )
