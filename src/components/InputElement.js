@@ -5,36 +5,43 @@ import './InputElement.css';
 
 class InputElement extends Component {
   render() {
-    const { autoFocus, deletable, deleteItem, label, placeholder, text, onChange } = this.props;
+    const { autoFocus, deletable, id, onClickDeleteButton, label, placeholder, text, onTypingInsideTextInput } = this.props;
 
     return (
       <li className="Input-element">
         <p>
-          <label htmlFor="">{label}</label><br />
+          <label htmlFor={id}>{label}</label><br />
           <input
             autoFocus={autoFocus}
-            onChange={onChange}
-            value={text}
+            id={id}
             placeholder={placeholder}
+            onChange={onTypingInsideTextInput}
+            value={text}
             type="text" />
         </p>
         {deletable ?
-          <button onClick={deleteItem}>&times;</button> :
+          <button onClick={onClickDeleteButton}>&times;</button> :
           <button style={{ visibility: "hidden" }}>&times;</button>}
       </li>
     )
   }
 }
 
+InputElement.defaultProps = {
+  deletable: true,
+  label: "",
+  placeholder: "test attribute",
+  text: "",
+}
 
 InputElement.propTypes = {
   autoFocus: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
   deletable: PropTypes.bool.isRequired,
-  deleteItem: PropTypes.func,
-  text: PropTypes.string,
   label: PropTypes.string,
+  onTypingInsideTextInput: PropTypes.func.isRequired,
+  onClickDeleteButton: PropTypes.func,
   placeholder: PropTypes.string,
+  text: PropTypes.string,
 }
 
 export default InputElement;

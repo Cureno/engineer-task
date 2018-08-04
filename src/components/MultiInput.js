@@ -9,18 +9,17 @@ class MultiInput extends Component {
 
   render() {
 
-    const { items, updateText, addItem, deleteItem } = this.props
+    const { items, updateText, addItem, deleteItem, onChange } = this.props
 
     const renderedItems = items.map((text, idx) => {
 
       const properties = {
-        onChange: e => updateText(idx, e),
+        onTypingInsideTextInput: e => updateText(idx, e),
         label: "test attribute",
-        placeholder: "test attribute",
         text,
-        deletable: true,
-        deleteItem: _ => deleteItem(idx),
-        key: idx
+        onClickDeleteButton: _ => deleteItem(idx),
+        key: idx,
+        id: `element-${idx}`
       }
 
       return idx < items.length - 1 ?
@@ -34,14 +33,12 @@ class MultiInput extends Component {
         <ul>
           {renderedItems}
           <InputElement
-            onChange={e => addItem(items.length, e)}
-            placeholder={"test attribute"}
-            text={""}
+            onTypingInsideTextInput={e => addItem(items.length, e)}
             deletable={false}
             key={items.length} />
         </ul>
 
-        <Buttons onClick={e => this.props.onChange(items)}/>
+        <Buttons onClickSaveButton={_ => onChange(items)}/>
       </div >
     )
   }
@@ -49,11 +46,11 @@ class MultiInput extends Component {
 }
 
 MultiInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  updateText: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
-  deleteIem: PropTypes.func,
+  deleteItem: PropTypes.func,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
+  updateText: PropTypes.func.isRequired,
 }
 
 export default MultiInput;
