@@ -12,7 +12,10 @@ class App extends Component {
           <h3 className="App-title">Welcome to the solution of the engineering task</h3>
         </header>
         <p>
-          To look at the code, visit <a href="http://www.github.com/Cureno">github.com/Cureno</a>
+          For the source code, please visit <a href="http://www.github.com/Cureno/engineer-task">github.com/Cureno/engineer-task</a>
+        </p>
+        <p>
+           The multi input component can be found at <code>src/components/MultiInput.js</code>
         </p>
         <br/>
         <br/>
