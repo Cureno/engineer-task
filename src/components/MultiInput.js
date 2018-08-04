@@ -25,7 +25,7 @@ class MultiInput extends Component {
 
       return idx < items.length - 1 ?
         <InputElement {...properties} /> :
-        <InputElement {...properties} autoFocus={true} />
+        <InputElement {...properties} autoFocus={true} /> // put the focus to an appropriate place
     })
 
     return (
