@@ -32,9 +32,7 @@ class StateProvider extends Component {
           originalText
       })
 
-
-
-    this.setState({ items })
+      this.setState({ items })
   }
 
   deleteItem = idx => {
@@ -50,9 +48,9 @@ class StateProvider extends Component {
       <MultiInput
         onChange={this.onChange}
         items={this.state.items}
-        updateText={this.updateText.bind(this)}
-        addItem={this.addItem.bind(this)}
-        deleteItem={this.deleteItem.bind(this)} />
+        updateText={this.updateText}
+        addItem={this.addItem}
+        deleteItem={this.deleteItem} />
     )
   }
 }
