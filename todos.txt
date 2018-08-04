@@ -22,3 +22,7 @@ Bene Studio React JS Engineering Task
 
 - should the last element be a unique component or just a parameterized regular one?
 - use animation? transitions?
+
+- make labels clickable
+- center \times; button properly
+- the items lift up weirdly when focused
